@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 3
-  tags: []
+  tags:
+  - cup
+  - cone
   layers:
   - Default
   - TransparentFX
@@ -46,6 +48,9 @@ TagManager:
     locked: 0
   - name: Obstacles
     uniqueID: 2283275483
+    locked: 0
+  - name: Ice Cream
+    uniqueID: 3585893919
     locked: 0
   m_RenderingLayers:
   - Default
