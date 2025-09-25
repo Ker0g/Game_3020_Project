@@ -21,13 +21,13 @@ public class RockSpawner : MonoBehaviour
         if (spawnInterval <= 0f)
         {
             SpawnRock();
-            spawnInterval = 2f;
+            spawnInterval = resetTime;
         }
     }
 
     void SpawnRock()
     {
-        float spawnXPosition = Random.Range(-8f, -0f);
+        float spawnXPosition = Random.Range(-6.7f, -2.20f);
         Vector3 spawnPosition = new Vector3(spawnXPosition, transform.position.y, transform.position.z);
         Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
     }
