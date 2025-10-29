@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.ComponentModel;
 public class DessertMaker : MonoBehaviour
 {
     [SerializeField] Customer customer;
@@ -16,7 +17,23 @@ public class DessertMaker : MonoBehaviour
     [SerializeField] Button resetButton;
     [SerializeField] Button serveButton;
 
-    public List<GameObject> myGameObjects = new List<GameObject>();
+    [SerializeField] TMP_Dropdown flavorDropdown;
+
+    public string selectedFlavor;
+
+    public string flavor; //the scooped ice cream flavor
+
+    Dictionary<string, Color> flavorColours = new Dictionary<string, Color>() 
+    {
+        {"vanilla", Color.white },
+        { "chocolate", new Color(0.36f, 0.25f, 0.20f) },
+        { "strawberry", Color.red },
+        { "mint", Color.green },
+        { "blueberry", Color.blue }
+
+    };
+
+public List<GameObject> myGameObjects = new List<GameObject>();
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -31,7 +48,7 @@ public class DessertMaker : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        selectedFlavor = flavorDropdown.options[flavorDropdown.value].text;
     }
 
     void AddCone()
@@ -39,8 +56,8 @@ public class DessertMaker : MonoBehaviour
         Debug.Log("Cone Added");
         GameObject cone = Instantiate(ConePrefab, transform.position, Quaternion.Euler(0f, 0f, 180f));
         myGameObjects.Add(cone);
-        
 
+        ContainerPicked();
     }
 
     void AddCup()
@@ -49,19 +66,25 @@ public class DessertMaker : MonoBehaviour
         GameObject cup = Instantiate(CupPrefab, transform.position, Quaternion.identity);
         myGameObjects.Add(cup);
        
+        ContainerPicked();
     }
 
     void AddIceCream()
     {
-        Debug.Log("Ice Cream Added");
+        Debug.Log("Ice Cream Added of flavor: " + selectedFlavor);
         Vector3 spawnPosition = new Vector3(transform.position.x, -0.8f, transform.position.z);
+        flavor = selectedFlavor;
         GameObject iceCream = Instantiate(IceCreamPrefab, spawnPosition, Quaternion.identity);
+        //iceCream.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("IceCreams/" + selectedFlavor);
+        iceCream.GetComponent<SpriteRenderer>().color = flavorColours[flavor];
         myGameObjects.Add(iceCream);
 
     }
 
     void ResetButton()
     {
+        cupButton.interactable = true;
+        coneButton.interactable = true;
         {
             foreach (var obj in myGameObjects)
             {
@@ -77,11 +100,13 @@ public class DessertMaker : MonoBehaviour
         if (myGameObjects.Count == 0) return;
 
         
-        string servedItem = myGameObjects[0].tag;
+        string container = myGameObjects[0].tag;
+        string flavor = this.flavor;
 
-        string requestedItem = currentCustomer.itemList[currentCustomer.randomIndex];
+        string requestedContainer = currentCustomer.itemList[currentCustomer.randomContainer];
+        string requestedFlavor = currentCustomer.flavorList[currentCustomer.randomFlavor];
 
-        if (servedItem == requestedItem)
+        if (container == requestedContainer && flavor == requestedFlavor)
         {
             Debug.Log("Correct order served!");
             StuffManager.Instance.IncreaseApproval(10);
@@ -100,4 +125,10 @@ public class DessertMaker : MonoBehaviour
     {
         Serve(customer);
     }
-}
+
+    void ContainerPicked()
+    {
+        cupButton.interactable = false;
+        coneButton.interactable = false;
+    }
+} // girl you need a shot of b12

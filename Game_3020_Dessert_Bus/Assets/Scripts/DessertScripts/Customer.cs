@@ -4,12 +4,13 @@ using TMPro;
 public class Customer : MonoBehaviour
 {
     public List<string> itemList = new List<string>() { "cup", "cone"};
-
+    public List<string> flavorList = new List<string>() { "Vanilla", "Chocolate"};
     [SerializeField] float orderTimer = 10f;
 
     [SerializeField] public TMP_Text orderText;
 
-    public int randomIndex;
+    public int randomContainer;
+    public int randomFlavor;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,9 +25,10 @@ public class Customer : MonoBehaviour
 
         if (orderTimer <= 0)
         {
-            randomIndex = Random.Range(0, itemList.Count);
-            Debug.Log("Customer ordered a " + itemList[randomIndex] + " of ice cream.");
-            orderText.text = "I would like a " + itemList[randomIndex] + " of ice cream.";
+            randomContainer = Random.Range(0, itemList.Count);
+            randomFlavor = Random.Range(0, flavorList.Count);
+            Debug.Log("Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] +  " ice cream.");
+            orderText.text = "Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] + " ice cream.";
             orderTimer = 10f;
         }
     }
