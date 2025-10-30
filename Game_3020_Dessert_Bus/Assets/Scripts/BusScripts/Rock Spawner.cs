@@ -7,6 +7,7 @@ public class RockSpawner : MonoBehaviour
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] float resetTime = 2f;
 
+    float difficultyTimer = 30f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -17,11 +18,18 @@ public class RockSpawner : MonoBehaviour
     void Update()
     {
         spawnInterval -= Time.deltaTime;
+        difficultyTimer -= Time.deltaTime;
 
         if (spawnInterval <= 0f)
         {
             SpawnRock();
             spawnInterval = resetTime;
+        }
+
+        if (difficultyTimer <= 0f && resetTime > 0.5f)
+        {
+            resetTime -= 0.1f;
+            difficultyTimer = 30f;
         }
     }
 

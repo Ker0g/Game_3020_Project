@@ -6,6 +6,11 @@ public class Customer : MonoBehaviour
     public List<string> itemList = new List<string>() { "cup", "cone"};
     public List<string> flavorList = new List<string>() { "Vanilla", "Chocolate", "Strawberry"};
     [SerializeField] float orderTimer = 10f;
+    float timerReset = 10f;
+
+    [SerializeField] public float difficultyTimer = 30f;
+
+    [SerializeField] int difficulty = 1;
 
     [SerializeField] public TMP_Text orderText;
 
@@ -24,6 +29,8 @@ public class Customer : MonoBehaviour
     void Update()
     {
         orderTimer -= Time.deltaTime;
+        difficultyTimer -= Time.deltaTime;
+
 
         if (orderTimer <= 0)
         {
@@ -34,11 +41,27 @@ public class Customer : MonoBehaviour
                 openOrder = false;
             }
             randomContainer = Random.Range(0, itemList.Count);
-            randomFlavor = Random.Range(0, flavorList.Count);
+            randomFlavor = Random.Range(0, difficulty);
             Debug.Log("Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] +  " ice cream.");
             orderText.text = "Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] + " ice cream.";
-            orderTimer = 10f;
+            orderTimer = timerReset;
             openOrder = true;
+        }
+
+        if (difficultyTimer <= 0f)
+        {
+            if(difficulty < itemList.Count)
+            {
+                difficulty += 1;
+            }
+            
+            difficultyTimer = 30f;
+            timerReset -= 0.5f;
+        }
+
+        if (Input.GetKey(KeyCode.Keypad0) && difficulty < itemList.Count)
+        {
+            difficulty += 1;
         }
     }
 }
