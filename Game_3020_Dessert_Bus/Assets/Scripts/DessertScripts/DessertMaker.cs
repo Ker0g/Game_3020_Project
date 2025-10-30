@@ -17,6 +17,8 @@ public class DessertMaker : MonoBehaviour
     [SerializeField] Button resetButton;
     [SerializeField] Button serveButton;
 
+    bool isCup = false;
+
     [SerializeField] TMP_Dropdown flavorDropdown;
 
     public string selectedFlavor;
@@ -54,9 +56,9 @@ public List<GameObject> myGameObjects = new List<GameObject>();
     void AddCone()
     {
         Debug.Log("Cone Added");
-        GameObject cone = Instantiate(ConePrefab, transform.position, Quaternion.Euler(0f, 0f, 180f));
+        GameObject cone = Instantiate(ConePrefab, transform.position, Quaternion.Euler(0f, 0f, 0f));
         myGameObjects.Add(cone);
-
+        // now here, this adds the cone and then it.. uhm... yup, it picks the container! -gf
         ContainerPicked();
     }
 
@@ -65,26 +67,34 @@ public List<GameObject> myGameObjects = new List<GameObject>();
         Debug.Log("Cup Added");
         GameObject cup = Instantiate(CupPrefab, transform.position, Quaternion.identity);
         myGameObjects.Add(cup);
-       
+        // now here, it does the same thing as above but instead it does IDENTITY instead of oh wait it's a differnet function,, -gf
         ContainerPicked();
+        isCup = true;
     }
 
     void AddIceCream()
     {
+        Vector3 spawnPosition = new Vector3(transform.position.x, -0.7f, transform.position.z);
         Debug.Log("Ice Cream Added of flavor: " + selectedFlavor);
-        Vector3 spawnPosition = new Vector3(transform.position.x, -0.8f, transform.position.z);
+        if (isCup == false)
+        {
+            spawnPosition = new Vector3(transform.position.x, 0.1f, transform.position.z);
+        }
+        
+
         flavor = selectedFlavor;
         GameObject iceCream = Instantiate(IceCreamPrefab, spawnPosition, Quaternion.identity);
         //iceCream.GetComponent<SpriteRenderer>().sprite = Resources.Load<Sprite>("IceCreams/" + selectedFlavor);
         iceCream.GetComponent<SpriteRenderer>().color = flavorColours[flavor];
         myGameObjects.Add(iceCream);
-
+        // mmm icecream ouhhhh -gf
     }
 
     void ResetButton()
     {
         cupButton.interactable = true;
         coneButton.interactable = true;
+        isCup = false;
         {
             foreach (var obj in myGameObjects)
             {
@@ -109,14 +119,14 @@ public List<GameObject> myGameObjects = new List<GameObject>();
         if (container == requestedContainer && flavor == requestedFlavor)
         {
             Debug.Log("Correct order served!");
-            StuffManager.Instance.IncreaseApproval(10);
+            StuffManager.Instance.IncreaseApproval(10); // YAYAY THANK YOU FOR THE ICE CREAM -gf
         }
         else
         {
             Debug.Log("Wrong order served!");
-            StuffManager.Instance.IncreaseApproval(-5); 
+            StuffManager.Instance.IncreaseApproval(-5); // >:( -gf
         }
-        currentCustomer.orderText.text = "";
+        currentCustomer.orderText.text = ""; // I'd like 5 ice creams... and 5, more ice creams... -gf
 
         ResetButton(); 
     }

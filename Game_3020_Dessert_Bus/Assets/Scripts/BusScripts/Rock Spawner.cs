@@ -27,7 +27,7 @@ public class RockSpawner : MonoBehaviour
 
     void SpawnRock()
     {
-        float spawnXPosition = Random.Range(-6.7f, -2.20f);
+        float spawnXPosition = Random.Range(-6.7f, -2.80f);
         Vector3 spawnPosition = new Vector3(spawnXPosition, transform.position.y, transform.position.z);
         Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
     }
