@@ -1064,6 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockPrefab: {fileID: 1000744852837724721, guid: dbc372b8deb2a4941a4c44c1e3084dab, type: 3}
+  tumbleweedPrefab: {fileID: 0}
   spawnInterval: 5
   resetTime: 5
 --- !u!4 &427528265
@@ -2214,6 +2215,7 @@ MonoBehaviour:
   rotationSpeed: 200
   maxRotation: 45
   playerActionMap: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+  direction: {x: 0, y: 0}
 --- !u!1 &915571905
 GameObject:
   m_ObjectHideFlags: 0
@@ -3347,6 +3349,8 @@ MonoBehaviour:
   - vanilla
   - chocolate
   orderTimer: 10
+  difficultyTimer: 30
+  difficulty: 0
   orderText: {fileID: 846122673}
   openOrder: 0
   randomContainer: 0
@@ -3941,6 +3945,7 @@ MonoBehaviour:
   horizontalBoundry:
     min: -8
     max: -2.6
+  direction: {x: 0, y: 0}
 --- !u!212 &1752757053
 SpriteRenderer:
   m_ObjectHideFlags: 0
