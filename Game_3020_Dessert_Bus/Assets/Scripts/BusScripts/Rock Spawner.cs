@@ -4,8 +4,11 @@ public class RockSpawner : MonoBehaviour
 {
 
     [SerializeField] GameObject rockPrefab;
+    [SerializeField] GameObject tumbleweedPrefab;
     [SerializeField] float spawnInterval = 2f;
     [SerializeField] float resetTime = 2f;
+
+    
 
     float difficultyTimer = 30f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -22,7 +25,12 @@ public class RockSpawner : MonoBehaviour
 
         if (spawnInterval <= 0f)
         {
-            SpawnRock();
+            int chooseObstacle = Random.Range(0, 2);
+
+            if (chooseObstacle == 0)
+                SpawnRock();
+            else
+                SpawnTumbleweed();
             spawnInterval = resetTime;
         }
 
@@ -38,5 +46,12 @@ public class RockSpawner : MonoBehaviour
         float spawnXPosition = Random.Range(-6.7f, -2.80f);
         Vector3 spawnPosition = new Vector3(spawnXPosition, transform.position.y, transform.position.z);
         Instantiate(rockPrefab, spawnPosition, Quaternion.identity);
+    }
+
+    void SpawnTumbleweed()
+    {
+        float spawnXPosition = Random.Range(-6.7f, -2.80f);
+        Vector3 spawnPosition = new Vector3(spawnXPosition, transform.position.y, transform.position.z);
+        Instantiate(tumbleweedPrefab, spawnPosition, Quaternion.identity);
     }
 }
