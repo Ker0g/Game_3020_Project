@@ -1064,7 +1064,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rockPrefab: {fileID: 1000744852837724721, guid: dbc372b8deb2a4941a4c44c1e3084dab, type: 3}
-  tumbleweedPrefab: {fileID: 0}
+  tumbleweedPrefab: {fileID: 7299962783427841992, guid: 9834d1656b20daa41aea193b4fc76afd, type: 3}
   spawnInterval: 5
   resetTime: 5
 --- !u!4 &427528265
