@@ -9,6 +9,8 @@ public class Customer : MonoBehaviour
 
     [SerializeField] public TMP_Text orderText;
 
+    [SerializeField] public bool openOrder = false;
+
     public int randomContainer;
     public int randomFlavor;
 
@@ -25,11 +27,18 @@ public class Customer : MonoBehaviour
 
         if (orderTimer <= 0)
         {
+            if (openOrder)
+            {
+                Debug.Log("Order Failed");
+                StuffManager.Instance.IncreaseApproval(-10);
+                openOrder = false;
+            }
             randomContainer = Random.Range(0, itemList.Count);
             randomFlavor = Random.Range(0, flavorList.Count);
             Debug.Log("Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] +  " ice cream.");
             orderText.text = "Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] + " ice cream.";
             orderTimer = 10f;
+            openOrder = true;
         }
     }
 }

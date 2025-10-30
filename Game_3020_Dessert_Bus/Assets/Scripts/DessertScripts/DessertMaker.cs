@@ -124,10 +124,10 @@ public List<GameObject> myGameObjects = new List<GameObject>();
         else
         {
             Debug.Log("Wrong order served!");
-            StuffManager.Instance.IncreaseApproval(-5); // >:( -gf
+            StuffManager.Instance.IncreaseApproval(-10); // >:( -gf
         }
         currentCustomer.orderText.text = ""; // I'd like 5 ice creams... and 5, more ice creams... -gf
-
+        currentCustomer.openOrder = false;
         ResetButton(); 
     }
 
