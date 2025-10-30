@@ -4,7 +4,7 @@ using TMPro;
 public class Customer : MonoBehaviour
 {
     public List<string> itemList = new List<string>() { "cup", "cone"};
-    public List<string> flavorList = new List<string>() { "Vanilla", "Chocolate"};
+    public List<string> flavorList = new List<string>() { "Vanilla", "Chocolate", "Strawberry"};
     [SerializeField] float orderTimer = 10f;
 
     [SerializeField] public TMP_Text orderText;
