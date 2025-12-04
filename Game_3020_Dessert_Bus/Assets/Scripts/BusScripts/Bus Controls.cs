@@ -7,7 +7,8 @@ public class BusControls : MonoBehaviour
 
     [SerializeField] InputActionAsset playerActionMap;
     [SerializeField] int speed;
-
+    [SerializeField] float correctionTime;
+    Rigidbody2D rb;
     
     [SerializeField] Boundary horizontalBoundry;
 
@@ -17,19 +18,28 @@ public class BusControls : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         moveAction = playerActionMap.FindAction("Move");
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         direction = moveAction.ReadValue<Vector2>();
+        if (direction.x != 0)
+        {
+            rb.AddForce(Vector2.right * direction.x * speed);
+        }
+        else
+        {
+            rb.linearVelocityX = Mathf.Lerp(rb.linearVelocityX, 0, Time.deltaTime * 2);
+        }
+            //Vector2 movement = direction * speed * Time.deltaTime;
 
-        Vector2 movement = direction * speed * Time.deltaTime;
+            //transform.position = new Vector3(transform.position.x + movement.x, transform.position.y + movement.y, transform.position.z);
 
-        transform.position = new Vector3(transform.position.x + movement.x, transform.position.y + movement.y, transform.position.z);
-
-        CheckBoundaries();
+            CheckBoundaries();
     }
 
     void CheckBoundaries()
