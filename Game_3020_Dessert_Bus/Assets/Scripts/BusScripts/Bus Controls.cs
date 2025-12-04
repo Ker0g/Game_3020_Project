@@ -34,6 +34,7 @@ public class BusControls : MonoBehaviour
         if (timer <= 0f)
         {
             StuffManager.Instance.PassTime();
+            timer = 1f;
         }
         
         direction = moveAction.ReadValue<Vector2>();

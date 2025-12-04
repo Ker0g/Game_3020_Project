@@ -72,5 +72,10 @@ public class Customer : MonoBehaviour
         {
             difficulty += 1;
         }
+
+        if (Input.GetKey(KeyCode.Keypad1))
+        {
+            StuffManager.Instance.DecreaseApproval(10);
+        }
     }
 }
