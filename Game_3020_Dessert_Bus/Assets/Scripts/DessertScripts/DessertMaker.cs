@@ -134,6 +134,7 @@ public List<GameObject> myGameObjects = new List<GameObject>();
     void ServeButton()
     {
         Serve(customer);
+        SoundManager.PlaySound("ding");
         StuffManager.Instance.ServeOrder();
     }
 

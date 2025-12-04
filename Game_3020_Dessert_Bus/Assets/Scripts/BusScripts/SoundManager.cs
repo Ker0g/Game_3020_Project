@@ -38,9 +38,9 @@ public static class SoundManager
         // Now create and attach the AudioSources to the new GameObject.
         
         sfxSource = soundManagerObject.AddComponent<AudioSource>();
-        sfxSource.volume = 0.75f; // 1.0f is default.
+        sfxSource.volume = 0.50f; // 1.0f is default.
         musicSource = soundManagerObject.AddComponent<AudioSource>();
-        musicSource.volume = 0.25f;
+        musicSource.volume = 0.20f;
         musicSource.loop = true; // false is default.
         GameObject.DontDestroyOnLoad(soundManagerObject);
     }
