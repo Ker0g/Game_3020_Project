@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIButtons : MonoBehaviour
 {
@@ -12,5 +13,15 @@ public class UIButtons : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void StartGame()
+    { 
+            SceneManager.LoadScene("SampleScene");     
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }

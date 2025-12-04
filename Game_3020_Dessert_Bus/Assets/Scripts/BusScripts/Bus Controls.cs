@@ -18,6 +18,7 @@ public class BusControls : MonoBehaviour
 
     void Start()
     {
+        SoundManager.PlayMusic("boundless-blue");
         rb = GetComponent<Rigidbody2D>();
         moveAction = playerActionMap.FindAction("Move");
     }

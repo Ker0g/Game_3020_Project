@@ -12,6 +12,7 @@ public class SoundLoader : MonoBehaviour
         //SoundManager.AddSound("NotApplicable", Resources.Load<AudioClip>("NotApplicable"), SoundType.SOUND_MUSIC);
 
         SoundManager.AddSound("sherbet", Resources.Load<AudioClip>("sherbet"), SoundType.SOUND_MUSIC);
+        SoundManager.AddSound("boundless-blue", Resources.Load<AudioClip>("boundless-blue"), SoundType.SOUND_MUSIC);
 
         SoundManager.PlayMusic("sherbet");
     }
