@@ -126,7 +126,7 @@ public List<GameObject> myGameObjects = new List<GameObject>();
             Debug.Log("Wrong order served!");
             StuffManager.Instance.IncreaseApproval(-10); // >:( -gf
         }
-        currentCustomer.orderText.text = ""; // I'd like 5 ice creams... and 5, more ice creams... -gf
+       // currentCustomer./*orderText.text = ""*/; // I'd like 5 ice creams... and 5, more ice creams... -gf
         currentCustomer.openOrder = false;
         ResetButton(); 
     }
@@ -134,6 +134,7 @@ public List<GameObject> myGameObjects = new List<GameObject>();
     void ServeButton()
     {
         Serve(customer);
+        StuffManager.Instance.ServeOrder();
     }
 
     void ContainerPicked()

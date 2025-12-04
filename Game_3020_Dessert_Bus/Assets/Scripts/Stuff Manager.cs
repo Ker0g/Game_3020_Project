@@ -5,6 +5,8 @@ public class StuffManager : MonoBehaviour
     public static StuffManager Instance { get; private set; }
 
     public int ApprovalRating { get; private set; } = 100;
+    public int OrdersServed { get; private set; } = 0;
+    public int TimePassed { get; private set; } = 0;
 
     private void Awake()
     {
@@ -36,5 +38,15 @@ public class StuffManager : MonoBehaviour
         {
             ApprovalRating = 100;
         }
+    }
+
+    public void ServeOrder()
+    {
+        OrdersServed++; 
+    }
+
+    public void PassTime()
+    {
+        TimePassed++;
     }
 }

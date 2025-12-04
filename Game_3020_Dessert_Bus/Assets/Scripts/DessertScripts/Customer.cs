@@ -12,7 +12,12 @@ public class Customer : MonoBehaviour
 
     [SerializeField] int difficulty = 1;
 
-    [SerializeField] public TMP_Text orderText;
+    //[SerializeField] public TMP_Text orderText;
+
+    public string order;
+
+    [SerializeField] public OrderPopup orderPrefab;
+    [SerializeField] public Canvas canvas;
 
     [SerializeField] public bool openOrder = false;
 
@@ -38,12 +43,16 @@ public class Customer : MonoBehaviour
             {
                 Debug.Log("Order Failed");
                 StuffManager.Instance.IncreaseApproval(-10);
+
                 openOrder = false;
             }
             randomContainer = Random.Range(0, itemList.Count);
             randomFlavor = Random.Range(0, difficulty);
-            Debug.Log("Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] +  " ice cream.");
-            orderText.text = "Customer ordered a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] + " ice cream.";
+            Debug.Log("May I have a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] +  " ice cream please?");
+            order = "May I have a " + itemList[randomContainer] + " of " + flavorList[randomFlavor] + " ice cream please?";
+
+            OrderPopup popup = Instantiate(orderPrefab, canvas.transform);
+            popup.Setup(order);
             orderTimer = timerReset;
             openOrder = true;
         }

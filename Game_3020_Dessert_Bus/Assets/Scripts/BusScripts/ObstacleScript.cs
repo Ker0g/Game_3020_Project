@@ -25,6 +25,7 @@ public class ObstacleScript : MonoBehaviour
     void OnCollisionEnter2D(Collision2D col)
     {
         StuffManager.Instance.DecreaseApproval(damage);
+        SoundManager.PlaySound("collision");
         Destroy(gameObject);
     }
 }

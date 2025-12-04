@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class BusControls : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class BusControls : MonoBehaviour
     [SerializeField] int speed;
     [SerializeField] float correctionTime;
     Rigidbody2D rb;
+
+    float timer = 1f;
     
     [SerializeField] Boundary horizontalBoundry;
 
@@ -26,6 +29,12 @@ public class BusControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+        timer -= Time.deltaTime;
+        if (timer <= 0f)
+        {
+            StuffManager.Instance.PassTime();
+        }
         
         direction = moveAction.ReadValue<Vector2>();
         if (direction.x != 0)
@@ -41,6 +50,11 @@ public class BusControls : MonoBehaviour
             //transform.position = new Vector3(transform.position.x + movement.x, transform.position.y + movement.y, transform.position.z);
 
             CheckBoundaries();
+
+        if(StuffManager.Instance.ApprovalRating <= 0)
+        {
+            SceneManager.LoadScene("EndScene");
+        }
     }
 
     void CheckBoundaries()

@@ -14,6 +14,6 @@ public class UIManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ApprovalRatingText.text = "Approval Rating: " + Mathf.RoundToInt(StuffManager.Instance.ApprovalRating) + "%";
+        ApprovalRatingText.text = "Approval: " + Mathf.RoundToInt(StuffManager.Instance.ApprovalRating) + "%";
     }
 }
